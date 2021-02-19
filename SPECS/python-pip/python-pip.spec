@@ -2,13 +2,14 @@
 Summary:        The PyPA recommended tool for installing Python packages.
 Name:           python-pip
 Version:        19.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        MIT
 Vendor:         Microsoft Corporation
 Distribution:   Mariner
 Group:          Development/Languages/Python
 URL:            https://pypi.python.org/pypi/pip
 Source0:        https://files.pythonhosted.org/packages/41/13/b6e68eae78405af6e4e9a93319ae5bb371057786f1590b157341f7542d7d/pip-19.2.tar.gz
+Patch0: CVE-2019-20916.patch
 # To get tests:
 # git clone https://github.com/pypa/pip && cd pip
 # git checkout 19.2 && tar -czvf ../pip-tests-19.2.tar.gz tests/
@@ -33,7 +34,7 @@ BuildRequires:  python-xml
 The PyPA recommended tool for installing Python packages.
 
 %prep
-%setup -q -n pip-%{version}
+%autosetup -n pip-%{version}
 tar -xf %{SOURCE1}
 
 %build
@@ -56,6 +57,8 @@ python setup.py test
 %{_bindir}/*
 
 %changelog
+*   Thu Feb 18 2021 Mariner Autopatcher <cblmargh@microsoft.com> 19.2-2
+-   Added patch files ./patches/CVE-2019-20916/CVE-2019-20916.patch
 *   Tue Dec 22 2020 Rachel Menge <rachelmenge@microsoft.com> 19.2-1
 -   Update to version 19.2 to fix CVE-2019-20916
 
