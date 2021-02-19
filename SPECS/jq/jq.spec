@@ -1,7 +1,7 @@
 Summary:       jq is a lightweight and flexible command-line JSON processor.
 Name:          jq
 Version:       1.5
-Release:        6%{?dist}
+Release:        7%{?dist}
 Group:         Applications/System
 Vendor:         Microsoft Corporation
 License:       MIT
@@ -12,6 +12,7 @@ Source0:       https://github.com/stedolan/jq/releases/download/jq-1.5/jq-1.5.ta
 Patch0:        CVE-2015-8863.patch
 #https://github.com/wmark/jq/commit/e6f32d647b180006a90e080ab61ce6f09c3134d7
 Patch1:        CVE-2016-4074.patch
+Patch2: CVE-2015-8863.patch
 Distribution:   Mariner
 %if %{with_check}
 BuildRequires: which
@@ -33,6 +34,7 @@ Development files for jq
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %configure \
@@ -64,6 +66,8 @@ rm -rf %{buildroot}/*
 %{_includedir}/*
 
 %changelog
+*   Thu Feb 18 2021 Mariner Autopatcher <cblmargh@microsoft.com> 1.5-7
+-   Added patch files ./patches/CVE-2015-8863/CVE-2015-8863.patch
 * Sat May 09 00:21:44 PST 2020 Nick Samson <nisamson@microsoft.com>
 - Added %%license line automatically
 
