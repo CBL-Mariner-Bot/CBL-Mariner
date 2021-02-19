@@ -1,7 +1,7 @@
 Summary:        Bourne-Again SHell
 Name:           bash
 Version:        4.4.18
-Release:        6%{?dist}
+Release:        7%{?dist}
 License:        GPLv3
 Vendor:         Microsoft Corporation
 Distribution:   Mariner
@@ -10,10 +10,11 @@ URL:            https://www.gnu.org/software/bash/
 Source0:        https://ftp.gnu.org/gnu/%{name}/%{name}-%{version}.tar.gz
 Source1:        bash_completion
 Patch0:         bash-4.4.patch
-# CVE-2019-18276 has a negligible security impact, 
+# CVE-2019-18276 has a negligible security impact,
 # since we don't ship bash with suid.
 # Backporting the patch is non-trivial, as well.
 Patch1:         CVE-2019-18276.nopatch
+Patch2: CVE-2019-18276.patch
 BuildRequires:  readline
 Requires:       readline
 Requires(post):   /bin/cp
@@ -332,6 +333,8 @@ fi
 %defattr(-,root,root)
 
 %changelog
+*   Thu Feb 18 2021 Mariner Autopatcher <cblmargh@microsoft.com> 4.4.18-7
+-   Added patch files ./patches/CVE-2019-18276/CVE-2019-18276.patch
 * Thu Oct 22 2020 Thomas Crain <thcrain@microsoft.com> - 4.4.18-6
 - Nopatch CVE-2019-18276
 
