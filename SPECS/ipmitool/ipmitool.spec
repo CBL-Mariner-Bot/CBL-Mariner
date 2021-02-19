@@ -4,7 +4,7 @@
 Name:          ipmitool
 Summary:       Utility for IPMI control
 Version:       1.8.18
-Release:       21%{?dist}
+Release:       22%{?dist}
 License:       BSD
 Vendor:        Microsoft Corporation
 Distribution:  Mariner
@@ -17,7 +17,7 @@ Source3:       exchange-bmc-os-info.service
 Source4:       exchange-bmc-os-info.sysconf
 Source5:       set-bmc-url.sh
 Source6:       exchange-bmc-os-info
- 
+
 Patch1:        0001-CVE-2011-4339-OpenIPMI.patch
 Patch2:        0002-openssl.patch
 Patch3:        0003-ipmitool-1.8.11-set-kg-key.patch
@@ -30,6 +30,7 @@ Patch9:        0009-best-cipher.patch
 Patch10:       0010-pef-missing-newline.patch
 Patch11:       0011-expand-sensor-name-column.patch
 Patch12:       0012-CVE-2020-5208.patch
+Patch13: CVE-2020-5208.patch
 
 BuildRequires: openssl-devel readline-devel ncurses-devel
 %{?systemd_requires}
@@ -187,6 +188,8 @@ install -Dm 755 contrib/bmc-snmp-proxy         %{buildroot}%{_libexecdir}/bmc-sn
 %{_libexecdir}/bmc-snmp-proxy
 
 %changelog
+*   Thu Feb 18 2021 Mariner Autopatcher <cblmargh@microsoft.com> 1.8.18-22
+-   Added patch files ./patches/CVE-2020-5208/CVE-2020-5208.patch
 * Fri Jun 19 2020 Andrew Phelps <anphel@microsoft.com> - 1.8.18-21
 - Require net-tools instead of hostname
 
@@ -231,7 +234,7 @@ install -Dm 755 contrib/bmc-snmp-proxy         %{buildroot}%{_libexecdir}/bmc-sn
 - Fix DDR4 memory issues
 - Increase length of sensor id
 - Enable usb interface by default
-- Fix input options 
+- Fix input options
 
 * Wed Feb 07 2018 Fedora Release Engineering <releng@fedoraproject.org> - 1.8.18-9
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_28_Mass_Rebuild
@@ -405,7 +408,7 @@ install -Dm 755 contrib/bmc-snmp-proxy         %{buildroot}%{_libexecdir}/bmc-sn
 
 * Tue Oct 14 2008 Jan Safranek <jsafrane@redhat.com> 1.8.10-2
 - fix issues found during package review:
-  - clear Default-Start: line in the init script, the service should be 
+  - clear Default-Start: line in the init script, the service should be
     disabled by default
   - added Obsoletes: OpenIPMI-tools
   - compile with --disable-dependency-tracking to speed things up
