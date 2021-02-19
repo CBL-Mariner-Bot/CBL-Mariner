@@ -4,7 +4,7 @@
 Summary:        Programming language
 Name:           lua
 Version:        5.3.5
-Release:        8%{?dist}
+Release:        9%{?dist}
 License:        MIT
 URL:            https://www.lua.org
 Group:          Development/Tools
@@ -28,6 +28,8 @@ Patch2:         CVE-2020-15889.nopatch
 Patch3:         CVE-2020-24342.nopatch
 # From http://lua.2524044.n2.nabble.com/CVE-2019-6706-use-after-free-in-lua-upvaluejoin-function-tt7685575.html
 Patch4:         CVE-2019-6706-use-after-free-lua_upvaluejoin.patch
+Patch5: CVE-2020-15888_629890.patch
+Patch6: CVE-2020-15888_eb4199.patch
 
 BuildRequires:  readline-devel
 Requires:       readline
@@ -48,6 +50,8 @@ Static libraries and header files for the support library for lua
 %patch0 -p1
 %patch1 -p1
 %patch4 -p1
+%patch5 -p1
+%patch6 -p1
 sed -i '/#define LUA_ROOT/s:/usr/local/:/usr/:' src/luaconf.h
 sed -i 's/CFLAGS= -fPIC -O2 /CFLAGS+= -fPIC -O2 -DLUA_COMPAT_MODULE /' src/Makefile
 cp %{SOURCE1} ./
@@ -109,6 +113,10 @@ rm -rf %{buildroot}
 %{_libdir}/liblua.so
 
 %changelog
+*   Thu Feb 18 2021 Mariner Autopatcher <cblmargh@microsoft.com> 5.3.5-9
+-   Added patch files
+-   ./patches/CVE-2020-15888/CVE-2020-15888_629890.patch,
+-   ./patches/CVE-2020-15888/CVE-2020-15888_eb4199.patch
 *   Thu Oct 01 2020 Daniel McIlvaney <damcilva@microsoft.com> 5.3.5-8
 -   Nopatch CVE-2020-24342
 -   Apply patch for CVE-2019-6706 from Lua mailing list
