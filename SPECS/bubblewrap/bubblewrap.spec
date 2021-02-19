@@ -1,7 +1,7 @@
 Summary:        setuid implementation of a subset of user namespaces.
 Name:           bubblewrap
 Version:        0.3.0
-Release:        5%{?dist}
+Release:        6%{?dist}
 License:        LGPLv2+
 URL:            https://github.com/containers/bubblewrap/
 Group:          Applications/System
@@ -11,6 +11,7 @@ Source0:        https://github.com/containers/bubblewrap/releases/download/v%{ve
 # This vulnerability only applies to version >= 0.4.0. Ignore the warnings against it.
 Patch0:         CVE-2020-5291.nopatch
 Patch1:         CVE-2019-12439.patch
+Patch2: CVE-2019-12439.patch
 BuildRequires:  autoconf
 BuildRequires:  automake
 BuildRequires:  libtool
@@ -24,6 +25,7 @@ The original bubblewrap code existed before user namespaces - it inherits code f
 %prep
 %setup -q
 %patch1 -p1
+%patch2 -p1
 %build
 
 ./configure \
@@ -51,6 +53,8 @@ rm -rf %{buildroot}/*
 %{_datadir}/bash-completion/completions/bwrap
 
 %changelog
+*   Thu Feb 18 2021 Mariner Autopatcher <cblmargh@microsoft.com> 0.3.0-6
+-   Added patch files ./patches/CVE-2019-12439/CVE-2019-12439.patch
 * Thu May 21 2020 Ruying Chen <v-ruyche@microsoft.com> - 0.3.0-5
 - Fixed CVE-2019-12439
 
