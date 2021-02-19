@@ -1,7 +1,7 @@
 Summary:        Systemd-239
 Name:           systemd
 Version:        239
-Release:        34%{?dist}
+Release:        35%{?dist}
 License:        LGPLv2+ AND GPLv2+ AND MIT
 Vendor:         Microsoft Corporation
 Distribution:   Mariner
@@ -49,6 +49,10 @@ Patch103:       103-core-allow-portablectl-to-load-new-services-without-.patch
 Patch104:       104-portablectl-block-when-stopping-a-unit-on-detach-now.patch
 Patch105:       105-portablectl-use-replace-unload-when-stopping-a-servi.patch
 Patch106:       106-portabled-implement-container-host-os-release-interf.patch
+Patch107: CVE-2020-1712_106844.patch
+Patch108: CVE-2020-1712_637486.patch
+Patch109: CVE-2020-1712_bc130b.patch
+Patch110: CVE-2020-1712_ea0d0e.patch
 BuildRequires:  cryptsetup-devel
 BuildRequires:  docbook-dtd-xml
 BuildRequires:  docbook-style-xsl
@@ -267,6 +271,12 @@ rm -rf %{buildroot}/*
 %files lang -f %{name}.lang
 
 %changelog
+*   Thu Feb 18 2021 Mariner Autopatcher <cblmargh@microsoft.com> 239-35
+-   Added patch files
+-   ./patches/CVE-2020-1712/CVE-2020-1712_106844.patch,
+-   ./patches/CVE-2020-1712/CVE-2020-1712_637486.patch,
+-   ./patches/CVE-2020-1712/CVE-2020-1712_bc130b.patch,
+-   ./patches/CVE-2020-1712/CVE-2020-1712_ea0d0e.patch
 * Fri Nov 13 2020 Nicolas Ontiveros <niontive@microsoft.com> - 239-34
 - Fix CVE-2019-6454 patch. Add upstream patch info.
 - Fix CVE-2020-1712 patch. Add upstream patch info.
