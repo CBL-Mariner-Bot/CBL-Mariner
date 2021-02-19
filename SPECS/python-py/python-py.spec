@@ -3,7 +3,7 @@
 Summary:        Python development support library
 Name:           python-py
 Version:        1.10.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        MIT
 Vendor:         Microsoft Corporation
 Distribution:   Mariner
@@ -11,6 +11,7 @@ Group:          Development/Languages/Python
 URL:            https://github.com/pytest-dev/py
 # Must use PyPI sources. Building from GitHub's release sources fails with a message to use PyPI.
 Source0:        https://files.pythonhosted.org/packages/0d/8c/50e9f3999419bb7d9639c37e83fa9cdcf0f601a9d407162d6c37ad60be71/py-%{version}.tar.gz
+Patch0: CVE-2020-29651.patch
 
 BuildRequires:  python-setuptools
 BuildRequires:  python-setuptools_scm
@@ -78,6 +79,8 @@ make -k check |& tee %{_specdir}/%{name}-check-log || %{nocheck}
 %{python3_sitelib}/*
 
 %changelog
+*   Thu Feb 18 2021 Mariner Autopatcher <cblmargh@microsoft.com> 1.10.0-2
+-   Added patch files ./patches/CVE-2020-29651/CVE-2020-29651.patch
 * Tue Dec 22 2020 Pawel Winogrodzki <pawelwi@microsoft.com> - 1.10.0-1
 - Updated to version 1.10.0 to fix CVE-2020-29651.
 - License verified.
