@@ -1,7 +1,7 @@
 Summary:        Ruby
 Name:           ruby
 Version:        2.6.6
-Release:        4%{?dist}
+Release:        5%{?dist}
 License:        (Ruby OR BSD) AND Public Domain AND MIT AND CC0 AND zlib AND UCD
 Vendor:         Microsoft Corporation
 Distribution:   Mariner
@@ -9,6 +9,7 @@ Group:          System Environment/Security
 URL:            https://www.ruby-lang.org/en/
 Source0:        https://cache.ruby-lang.org/pub/ruby/2.6/%{name}-%{version}.tar.xz
 Patch0:         CVE-2020-25613.patch
+Patch1: CVE-2020-25613.patch
 BuildRequires:  openssl-devel
 BuildRequires:  readline
 BuildRequires:  readline-devel
@@ -62,6 +63,8 @@ sudo -u test make test TESTS="-v"
 %{_mandir}/man5/*
 
 %changelog
+*   Thu Feb 18 2021 Mariner Autopatcher <cblmargh@microsoft.com> 2.6.6-5
+-   Added patch files ./patches/CVE-2020-25613/CVE-2020-25613.patch
 * Thu Jan 14 2021 Andrew Phelps <anphel@microsoft.com> - 2.6.6-4
 - Run "make test" instead of "make check" to avoid unstable tests.
 
