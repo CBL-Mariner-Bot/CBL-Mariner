@@ -2,7 +2,7 @@
 Summary:        A high-level scripting language
 Name:           python3
 Version:        3.7.9
-Release:        3%{?dist}
+Release:        4%{?dist}
 License:        PSF
 Vendor:         Microsoft Corporation
 Distribution:   Mariner
@@ -14,6 +14,11 @@ Patch1:         python3-support-mariner-platform.patch
 Patch2:         Replace-unsupported-TLS-methods.patch
 # CVE-2020-27619 patch is pulled from upstream commit
 Patch3:         CVE-2020-27619.patch
+Patch4: CVE-2020-27619_2ef5ca.patch
+Patch5: CVE-2020-27619_43e523.patch
+Patch6: CVE-2020-27619_6c6c25.patch
+Patch7: CVE-2020-27619_b664a1.patch
+Patch8: CVE-2020-27619_e912e9.patch
 BuildRequires:  bzip2-devel
 BuildRequires:  expat-devel >= 2.1.0
 BuildRequires:  libffi-devel >= 3.0.13
@@ -140,6 +145,11 @@ The test package contains all regression tests for Python as well as the modules
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
+%patch5 -p1
+%patch6 -p1
+%patch7 -p1
+%patch8 -p1
 
 %build
 export OPT="%{optflags} %{openssl_flags}"
@@ -264,6 +274,13 @@ rm -rf %{buildroot}/*
 %{_libdir}/python3.7/test/*
 
 %changelog
+*   Thu Feb 18 2021 Mariner Autopatcher <cblmargh@microsoft.com> 3.7.9-4
+-   Added patch files
+-   ./patches/CVE-2020-27619/CVE-2020-27619_2ef5ca.patch,
+-   ./patches/CVE-2020-27619/CVE-2020-27619_43e523.patch,
+-   ./patches/CVE-2020-27619/CVE-2020-27619_6c6c25.patch,
+-   ./patches/CVE-2020-27619/CVE-2020-27619_b664a1.patch,
+-   ./patches/CVE-2020-27619/CVE-2020-27619_e912e9.patch
 * Mon Nov 16 2020 Pawel Winogrodzki <pawelwi@microsoft.com> - 3.7.9-3
 - Adding explicit runtime dependency on 'python3-xml' for the 'python3-setuptool' subpackage.
 
