@@ -1,7 +1,7 @@
 Summary:        Low-level libraries useful for providing data structure handling for C.
 Name:           glib
 Version:        2.58.0
-Release:        7%{?dist}
+Release:        8%{?dist}
 License:        LGPLv2+
 Vendor:         Microsoft Corporation
 Distribution:   Mariner
@@ -11,6 +11,7 @@ Source0:        http://ftp.gnome.org/pub/gnome/sources/glib/2.58/%{name}-%{versi
 Patch0:         glib-CVE-2019-12450.patch
 Patch1:         glib-CVE-2019-13012.patch
 Patch2:         glib-CVE-2020-35457.patch
+Patch3: CVE-2020-35457.patch
 BuildRequires:  cmake
 BuildRequires:  libffi-devel
 BuildRequires:  pcre-devel
@@ -57,6 +58,7 @@ Gsettings schemas compiling tool
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 ./autogen.sh
@@ -99,6 +101,8 @@ make DESTDIR=%{buildroot} install
 %{_datadir}/glib-2.0/schemas/*
 
 %changelog
+*   Thu Feb 18 2021 Mariner Autopatcher <cblmargh@microsoft.com> 2.58.0-8
+-   Added patch files ./patches/CVE-2020-35457/CVE-2020-35457.patch
 * Fri Dec 18 2020 Nick Samson <nisamson@microsoft.com> - 2.58.0-7
 - Added patch for CVE-2020-35457, removed %%sha, license verified.
 
