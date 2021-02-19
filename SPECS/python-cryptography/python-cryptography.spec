@@ -4,7 +4,7 @@
 Summary:        Python cryptography library
 Name:           python-cryptography
 Version:        2.3.1
-Release:        4%{?dist}
+Release:        5%{?dist}
 Url:            https://pypi.python.org/pypi/cryptography
 License:        ASL 2.0
 Group:          Development/Languages/Python
@@ -13,6 +13,7 @@ Distribution:   Mariner
 Source0:        https://pypi.io/packages/source/c/cryptography/cryptography-%{version}.tar.gz
 
 Patch0:         CVE-2020-25659.patch
+Patch1: CVE-2020-25659.patch
 
 BuildRequires:  python2
 BuildRequires:  python2-libs
@@ -101,6 +102,8 @@ python3 setup.py test
 %{python3_sitelib}/*
 
 %changelog
+*   Thu Feb 18 2021 Mariner Autopatcher <cblmargh@microsoft.com> 2.3.1-5
+-   Added patch files ./patches/CVE-2020-25659/CVE-2020-25659.patch
 *   Wed Jan 20 2021 Henry Beberman <henry.beberman@microsoft.com> 2.3.1-4
 -   Patch CVE-2020-25659
 -   License verified
