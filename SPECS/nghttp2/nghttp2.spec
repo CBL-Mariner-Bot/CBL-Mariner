@@ -1,13 +1,15 @@
 Summary:        nghttp2 is an implementation of HTTP/2 and its header compression algorithm, HPACK.
 Name:           nghttp2
 Version:        1.41.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        MIT
 Vendor:         Microsoft Corporation
 Distribution:   Mariner
 Group:          Applications/System
 URL:            https://nghttp2.org
 Source0:        https://github.com/nghttp2/nghttp2/releases/download/v%{version}/%{name}-%{version}.tar.xz
+Patch0: CVE-2020-11080_336a98.patch
+Patch1: CVE-2020-11080_f8da73.patch
 
 BuildRequires:  c-ares-devel
 BuildRequires:  jansson-devel
@@ -29,7 +31,7 @@ Requires:       %{name} = %{version}-%{release}
 These are the header files of nghttp2.
 
 %prep
-%setup -q
+%autosetup
 
 %build
 ./configure --prefix=%{_prefix}        \
@@ -58,6 +60,10 @@ rm %{buildroot}/%{_libdir}/*.la
 %{_libdir}/pkgconfig/*.pc
 
 %changelog
+*   Thu Feb 18 2021 Mariner Autopatcher <cblmargh@microsoft.com> 1.41.0-2
+-   Added patch files
+-   ./patches/CVE-2020-11080/CVE-2020-11080_336a98.patch,
+-   ./patches/CVE-2020-11080/CVE-2020-11080_f8da73.patch
 * Tue Nov 03 2020 Pawel Winogrodzki <pawelwi@microsoft.com> - 1.41.0-1
 - Upgrading to 1.41.0 to fix CVE-2020-11080.
 - License verified.
