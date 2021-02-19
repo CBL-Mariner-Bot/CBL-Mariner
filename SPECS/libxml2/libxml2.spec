@@ -3,7 +3,7 @@
 Summary:        Libxml2
 Name:           libxml2
 Version:        2.9.10
-Release:        3%{?dist}
+Release:        4%{?dist}
 License:        MIT
 Vendor:         Microsoft Corporation
 Distribution:   Mariner
@@ -13,6 +13,7 @@ Source0:        ftp://xmlsoft.org/libxml2/%{name}-%{version}.tar.gz
 Patch0:         CVE-2019-20388.patch
 Patch1:         CVE-2020-7595.patch
 Patch2:         CVE-2020-24977.patch
+Patch3: CVE-2020-24977.patch
 BuildRequires:  python2-devel
 BuildRequires:  python2-libs
 BuildRequires:  python3-devel
@@ -105,6 +106,8 @@ rm -rf %{buildroot}/*
 %{_libdir}/cmake/libxml2/libxml2-config.cmake
 
 %changelog
+*   Thu Feb 18 2021 Mariner Autopatcher <cblmargh@microsoft.com> 2.9.10-4
+-   Added patch files ./patches/CVE-2020-24977/CVE-2020-24977.patch
 * Mon Oct 26 2020 Ruying Chen <v-ruyche@microsoft.com> - 2.9.10-3
 - Patch CVE-2020-24977.
 
